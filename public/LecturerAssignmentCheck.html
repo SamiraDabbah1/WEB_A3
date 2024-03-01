@@ -1,0 +1,56 @@
+<!DOCTYPE html> 
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>student assignment</title>
+    <!-- Include Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Include Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body class="flex h-screen bg-white">
+
+    <!-- Sidebar -->
+    <lecturer-sidebar-component></lecturer-sidebar-component>
+
+    <!-- Main Content Container -->
+    <div class="flex-1 flex flex-col overflow-hidden bg-ashen border border-gray-400">
+
+        <!-- Header -->
+        <lecturer-header-component></lecturer-header-component>
+
+        <!-- Main Content -->
+        <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-4">
+            <h1 id="myCourses" class="heading text-2xl text-gray-700 mb-5 border-b border-gray-700 pb-3">student name:             id:</h1>
+            <div class="mt-8">
+                <h2 class="text-lg text-red-700 mb-3">the homework from mongodp</h2>
+                <h2 class="text-lg text-gray-800 mb-3">Lecturer's Review & Mark Submission</h2>
+                
+                <!-- Review Text Area -->
+                <textarea class="w-full h-40 border border-gray-400 rounded-lg px-4 py-2 mb-3" placeholder="Enter your review here..."></textarea>
+                
+                <!-- Mark Input -->
+                <input type="number" class="w-1/4 border border-gray-400 rounded-lg px-4 py-2 mb-3 mr-4" placeholder="Enter mark...">
+                
+                <!-- Submit Button -->
+                <button class="text-white bg-blue-500 hover:bg-blue-600 py-2 px-4 rounded-lg">Submit</button>
+            </div>
+
+
+        </main>
+
+        <!-- Footer -->
+        <page-footer-component></page-footer-component>
+    </div>
+
+    <script src="PageAutomation.js"></script>
+    <script src="TestFile.js"></script>
+    <script type="module" src="/main.js"></script>
+</body>
+
+</html>

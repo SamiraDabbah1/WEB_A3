@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <!-- Include Tailwind CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <!-- Include Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+  <img src="images/login.webp" style="width: 100vw; height: 100vh; object-fit: cover; position: fixed; top: 0; left: 0; z-index: -1;" alt="">
+  <div class="w-full sm:w-96 max-w-md bg-white shadow-md rounded px-8 py-6">
+      <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+          <h2 class="mt-4 text-center text-2xl font-bold leading-9 tracking-tight text-blue-800">Sign in</h2>
+      </div>
+      <div class="mt-6 sm:mx-auto sm:w-full sm:max-w-sm">
+        <form id="loginForm" class="space-y-6" method="POST" action="/user/login">
+          <div>
+                  <label for="email" class="block text-sm font-medium leading-6 text-blue-800">Email address</label>
+                  <div class="mt-2">
+                      <input id="emailLogin" name="email" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-800 sm:text-sm sm:leading-6" style="margin-bottom: 1rem;">
+                  </div>
+              </div>
+              <div>
+                  <label for="password" class="block text-sm font-medium leading-6 text-blue-800">Password</label>
+                  <div class="mt-2">
+                      <input id="passwordLogin" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-800 sm:text-sm sm:leading-6" style="margin-bottom: 2rem;">
+                  </div>
+              </div>
+              <div>
+                  <div class="mt-2 relative">
+                      <label for="userType" class="block text-sm font-medium leading-6 text-blue-800">Login as</label>
+                      <div class="inline-block relative w-full">
+                          <select id="userType" name="userType" required class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:ring-indigo-800 focus:border-indigo-900">
+                              <option >Select Role</option>
+                              <option value="lecturer">lecturer</option>
+                              <option value="student">student</option>
+                          </select>
+                          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                  <path d="M9.293 14.707a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 12.586l5.293-5.293a1 1 0 0 1 1.414 1.414l-6 6a1 1 0 0 1-1.414 0z" />
+                              </svg>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div>
+                  <button type="submit" class="flex w-full justify-center rounded-md bg-blue-800 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-700">Sign in</button>
+              </div>
+          </form>
+          <p class="mt-6 text-center text-sm text-gray-700">
+              Not a member? <a href="/Register.html" class="font-semibold leading-6 text-indigo-800 hover:text-indigo-00">Sign up</a>
+          </p>
+      </div>
+  </div>
+
+</body>
+</html>
