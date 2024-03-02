@@ -18,8 +18,12 @@
 
   <!-- Register section -->
   <div class="form-container mt-10">
-    <form class="register max-w-md mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" action="#" method="post"
-      enctype="multipart/form-data" onsubmit="return handleRegisterSubmit(this);">
+    <!-- <form class="register max-w-md mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" action="#" method="post"
+      enctype="multipart/form-data" onsubmit="return handleRegisterSubmit(this);"> -->
+
+      <form class="register max-w-md mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+      enctype="application/x-www-form-urlencoded" method="POST" action="/user/register">
+    
       <h2 class="mt-6 mb-6 text-center text-3xl font-bold leading-9 tracking-tight text-blue-800">Create Account</h2>
 
       <div class="flex flex-wrap -mx-4 mb-3">
@@ -27,14 +31,14 @@
           <label class="block uppercase tracking-wide text-blue-800 text-s font-bold mb-2" for="name">Your Name</label>
           <input
             class="appearance-none block w-full bg-white-200 border-gray-400 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-            id="name" name="name" type="text" placeholder="Enter your name" maxlength="50">
+            id="name" name="userName" type="text" placeholder="Enter your name" maxlength="50">
         </div>
         <div class="w-full md:w-1/2 px-3">
           <label class="block uppercase tracking-wide text-blue-800 text-s font-bold mb-2" for="email">Your
             Email</label>
           <input
             class="appearance-none block w-full bg-white-200 border-gray-400 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="emailRegister" name="email" type="email" placeholder="Enter your email" maxlength="20">
+            id="emailRegister" name="userEmail" type="email" placeholder="Enter your email" maxlength="20">
         </div>
       </div>
       <div class="flex flex-wrap -mx-3 mb-6">
@@ -43,7 +47,7 @@
             Password</label>
           <input
             class="appearance-none block w-full bg-white-200 border-gray-400 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="passwordRegister" name="password" type="password" placeholder="Enter your password" maxlength="20">
+            id="passwordRegister" name="userPassword" type="password" placeholder="Enter your password" maxlength="20">
         </div>
         <div class="w-full md:w-1/2 px-3">
           <label class="block uppercase tracking-wide text-blue-800 text-s font-bold mb-2" for="cpass">Confirm
@@ -57,10 +61,10 @@
         <label class="block uppercase tracking-wide text-blue-800 text-s font-bold mb-2" for="role">Select Role</label>
         <select
           class="appearance-none block w-full bg-white border-gray-400 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-white-500 text-lg"
-          id="role" name="role">
+          id="role" name="userType">
           <option value="">Select your role</option>
-          <option value="student">Student</option>
-          <option value="teacher">lecturer</option>
+          <option value="student">student</option>
+          <option value="lecturer">lecturer</option>
         </select>
       </div>
       <div class="mb-6">
@@ -78,6 +82,31 @@
             class="text-indigo-800 font-semibold">Login</a></p>
     </form>
   </div>
+  <!-- <script>
+    document.querySelector('form.register').addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(event.target);
+
+      try {
+        const response = await fetch('/register', {
+          method: 'POST',
+          body: formData
+        });
+
+        if (!response.ok) {
+          throw new Error('Registration failed');
+        }
+
+        // Redirect to login page after successful registration
+        window.location.href = 'login.html'; 
+      } catch (error) {
+        console.error(error);
+        alert('Registration failed');
+      }
+    });
+  </script> -->
+
   <script type="module" src="/main.js"></script>
 </body>
 

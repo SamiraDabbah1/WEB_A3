@@ -87,7 +87,7 @@ class StudentSidebarComponent extends HTMLElement {
       <div>
         <div class="profile p-8 text-center">
           <img src="images/pic_7.jpg" class="h-20 w-20 rounded-full object-cover mx-auto mb-2">
-          <h3 class="text-xl text-black">Samira Dabbah</h3>
+          <h3 class="text-xl text-black" id="userName"</h3>
           <p class="text-gray-500">Student</p>
           <a href="#" class="btn bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 mt-2 block">View Profile</a>
         </div>

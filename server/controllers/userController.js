@@ -2,30 +2,25 @@ const userRepository =  require('../repository/userRepository');
 const User = require('../models/userModel');
 // Import necessary modules and dependencies
 const bcrypt = require('bcrypt'); // For password hashing
-const multer = require('multer');
-
-// Set up multer for handling file uploads
-const storage = multer.memoryStorage(); // Store the file in memory as a buffer
-const upload = multer({ storage: storage });
 
 exports.addUser = async (req, res) => {
     try {
         const { userName, userType, userEmail, userPassword } = req.body;
 
-        // Check if an image is uploaded
-        const userImage = req.file ? req.file.buffer.toString('base64') : undefined;
+        console.log('Received user data:', req.body);
 
         // Hash the password
-        const hashedPassword = await bcrypt.hash(userPassword, 10);
+        const hashedPassword = await bcrypt.hash(userPassword, 10); // 10 is the salt rounds
+        console.log('Hashed password:', hashedPassword);
 
-        // Create a new user object with hashed password and user image
+        // Create a new user object with hashed password
         const newUser = new User({
             userName,
             userType,
             userEmail,
-            userPassword: hashedPassword,
-            userImage
+            userPassword: hashedPassword // Store hashed password in the database
         });
+        console.log('New user object:', newUser);
 
         // Save the new user to the database
         await newUser.save();
@@ -45,10 +40,6 @@ exports.addUser = async (req, res) => {
         return res.status(500).json({ message: 'Error adding user' });
     }
 };
-
-// Modify your route to use multer for handling file uploads
-router.post('/addUser', upload.single('userImage'), userController.addUser);
-
 
 
 exports.loginUser = async (req, res) => {
@@ -88,10 +79,10 @@ exports.loginUser = async (req, res) => {
 
         // Pass the user's name to the front-end template
         // res.render('redirectUrl', { userName });
-        
+              
+        // Pass the user's name as a query parameter in the redirect URL
+        res.redirect(`${redirectUrl}?userName=${encodeURIComponent(userName)}`);
 
-        res.redirect(redirectUrl);
-        
 
     } catch (error) {
         console.error('Error logging in user:', error);
@@ -106,9 +97,9 @@ exports.getAddUserForm = (req, res) => {
 
 
 exports.editUser = (req, res) => {
-    const { userName, userType, userEmail, userPassword, userImage } = req.body;
+    const { userName, userType, userEmail, userPassword } = req.body;
     const userId = req.params.id;
-    userRepository.update({ _id: userId, userName, userType, userEmail, userPassword, userImage }, (updatedUser) => {
+    userRepository.update({ _id: userId, userName, userType, userEmail, userPassword }, (updatedUser) => {
         if (updatedUser) {
             res.redirect('/users');
         } else {
