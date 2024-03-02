@@ -17,7 +17,7 @@
 
   <!-- Sidebar -->
   <student-sidebar-component></student-sidebar-component>
-
+  
 
 
   <!-- Main Content Container -->
@@ -25,7 +25,7 @@
 
     <!-- Header -->
     <student-header-component></student-header-component>
-
+    
 
     <!-- Main Content -->
     <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-4" id="mainContent">
@@ -317,8 +317,8 @@
   <script>
     // Function to get query parameter value by name from URL
     function getQueryParam(name) {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get(name);
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(name);
     }
 
     // Get the user's name from the URL
@@ -327,9 +327,9 @@
     // Update the HTML content with the user's name
     const userNameElement = document.getElementById('userName');
     if (userNameElement) {
-        userNameElement.textContent = userName;
+      userNameElement.textContent = userName;
     }
-</script>
+  </script>
 
 </body>
 
