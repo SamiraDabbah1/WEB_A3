@@ -77,9 +77,8 @@ exports.loginUser = async (req, res) => {
             redirectUrl = '/LecturerHome.html';
         }
 
-        // Pass the user's name to the front-end template
-        // res.render('redirectUrl', { userName });
-              
+       // res.redirect(redirectUrl); 
+
         // Pass the user's name as a query parameter in the redirect URL
         res.redirect(`${redirectUrl}?userName=${encodeURIComponent(userName)}`);
 
