@@ -32,7 +32,7 @@ exports.addUser = async (req, res) => {
             return res.status(201).json({ message: 'User registered successfully', user: newUser });
         } else {
             // If it's a form submission, redirect the user to the login page
-            return res.redirect('/login.html');
+            return res.redirect('/Login.html');
         }
     } catch (error) {
         console.error('Error adding user:', error);
