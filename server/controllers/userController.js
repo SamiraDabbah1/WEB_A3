@@ -1,4 +1,4 @@
-const userRepository =  require('../repository/userRepository');
+const userRepository = require('../repository/userRepository');
 const User = require('../models/userModel');
 // Import necessary modules and dependencies
 const bcrypt = require('bcrypt'); // For password hashing
@@ -9,16 +9,13 @@ exports.addUser = async (req, res) => {
 
         console.log('Received user data:', req.body);
 
-        // Hash the password
-        const hashedPassword = await bcrypt.hash(userPassword, 10); // 10 is the salt rounds
-        console.log('Hashed password:', hashedPassword);
 
         // Create a new user object with hashed password
         const newUser = new User({
             userName,
             userType,
             userEmail,
-            userPassword: hashedPassword // Store hashed password in the database
+            userPassword // Store hashed password in the database
         });
         console.log('New user object:', newUser);
 
@@ -43,51 +40,33 @@ exports.addUser = async (req, res) => {
 
 
 exports.loginUser = async (req, res) => {
-    console.log(req.body); // Log the request body to see if data is received
-    const { email, password, userType } = req.body;
+    const { email, password } = req.body;
 
     try {
-        // Find the user by email and userType
-        const user = await User.findOne({ userEmail: email, userType: userType });
-        const userName = user.userName; 
-
+        // Find the user by email
+        const user = await User.findOne({ userEmail: email });
         if (!user) {
-            // If user is not found, send error response
             return res.status(404).json({ message: 'User not found' });
         }
 
-        // Compare passwords
-        const passwordMatch = await bcrypt.compare(password, user.userPassword);
+        // Now we have the user and can access their userType
+        const userType = user.userType;
+        const userName = user.userName;
 
-        // Compare passwords
-        console.log('Entered Password:', password);
-        console.log('Stored Password Hash:', user.userPassword);
-        console.log('Password Match:', passwordMatch);
-        
-        if (!passwordMatch) {
-            // If passwords don't match, send error response
+        // Compare plain text passwords directly (not recommended)
+        if (password !== user.userPassword) {
             return res.status(401).json({ message: 'Invalid credentials' });
         }
 
-        // Determine the redirect URL based on userType
-        let redirectUrl;
-        if (userType === 'student') {
-            redirectUrl = '/StudentHome.html';
-        } else if (userType === 'lecturer') {
-            redirectUrl = '/LecturerHome.html';
-        }
-
-       // res.redirect(redirectUrl); 
-
-        // Pass the user's name as a query parameter in the redirect URL
+        // Redirect based on userType
+        let redirectUrl = userType === 'student' ? '/StudentHome.html' : '/LecturerHome.html';
         res.redirect(`${redirectUrl}?userName=${encodeURIComponent(userName)}`);
-
-
     } catch (error) {
         console.error('Error logging in user:', error);
         res.status(500).json({ message: 'Internal server error' });
     }
 };
+
 
 
 exports.getAddUserForm = (req, res) => {

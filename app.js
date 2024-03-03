@@ -1,6 +1,6 @@
 // app.js
 const express = require('express');
-const exphbs  = require('express-handlebars');
+const exphbs = require('express-handlebars');
 
 const connectToMongoDB = require('./server/config/database');
 const userRoutes = require('./server/routes/userRoutes');
@@ -17,14 +17,14 @@ app.use(cors());
 // Connect to MongoDB
 connectToMongoDB();
 
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Set the static file directory
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(express.urlencoded({ extended: true }));
- 
+
 // // Express configuration
 // app.engine('.html', exphbs({ extname: '.html' }));
 // app.set('view engine', '.html');
@@ -37,12 +37,12 @@ app.use(express.urlencoded({ extended: true }));
 //app.set('views', path.join(__dirname, 'views'));
 
 // Routes
-app.use('/user',userRoutes);
+app.use('/user', userRoutes);
 
 // Define route handler for root URL
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, './index.html'));
-  });
+});
 
 
 
