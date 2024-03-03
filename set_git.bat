@@ -6,7 +6,7 @@
 
 git init
 git add .
-git commit -m "first commit"
+git commit -m "reema adding db"
 git branch -M main
-git remote add origin https://github.com/SamiraDabbah1/WEB_A3.git
+git remote add origin https://github.com/ReemaNa81/WEB_LMS/tree/main
 git push -u origin main
